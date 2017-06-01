@@ -1,0 +1,83 @@
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+<!-- BEGIN HEADER -->
+
+    <div class="header navbar navbar-inverse navbar-fixed-top">
+
+        <!-- BEGIN TOP NAVIGATION BAR -->
+
+        <div class="navbar-inner">
+
+            <div class="container-fluid">
+
+                <!-- BEGIN LOGO -->
+
+                <a class="brand" href="<?php echo U('Index/index','','',true); ?>">
+
+                </a>
+
+                <!-- END LOGO -->
+
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+
+                <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+
+                    <img src="__IMAGE__/menu-toggler.png"/>
+
+                </a>
+
+                <!-- END RESPONSIVE MENU TOGGLER -->
+
+                <!-- BEGIN TOP NAVIGATION MENU -->
+
+                <ul class="nav pull-right">
+
+                    <!-- BEGIN USER LOGIN DROPDOWN -->
+
+                    <li class="dropdown user">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <present name="userinfo.avatar">
+                                <img src="__IMG__/{$userinfo['avatar']}" style="width:30px;height:30px">
+                                <else/>
+                                <img src="__IMAGE__/avatar1_small.jpg" style="width:30px;height:30px">
+                            </present>
+
+                            <span class="username"><present name="userinfo.name">{$userinfo['name']}
+                                <else/>
+                                呵呵呵
+                            </present></span>
+
+                            <i class="icon-angle-down"></i>
+
+                        </a>
+
+                        <ul class="dropdown-menu">
+
+                            <li><a href="<?php echo U('Users/userinfo','','',true); ?>"><i class="icon-user"></i> 个人中心</a>
+                            </li>
+
+                            <li><a href="<?php echo U('Users/logout','','',true); ?>"><i class="icon-key"></i> 注销</a></li>
+
+
+                        </ul>
+
+                    </li>
+
+                    <!-- END USER LOGIN DROPDOWN -->
+
+                </ul>
+
+                <!-- END TOP NAVIGATION MENU -->
+
+            </div>
+
+        </div>
+
+        <!-- END TOP NAVIGATION BAR -->
+
+    </div>
+
+    <!-- END HEADER -->

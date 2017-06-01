@@ -1,0 +1,123 @@
+*{
+  font-size: 16px;
+}
+#printbox{
+  width:1020px;
+  min-height: 100px;
+}
+#actionbutton{
+  width: 1020px;
+  height: 100px;
+  line-height: 100px;
+  border-top-style: solid;
+  margin-top: 50px;
+}
+#actionbutton a{
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  background: green;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+.title20{
+  font-size: 20px;
+  font-weight: 900;
+}
+.title23{
+  font-size: 23px;
+  font-weight: 900;
+}
+.title16{
+  font-size: 18px;
+  font-weight: 900;
+  margin: 15px 0px 15px 0px; 
+}
+.left{
+  text-align: left;
+  text-indent: 5px;
+}
+.center{
+  text-align: center;
+}
+.right{
+  text-align: right;
+}
+.weight{
+  font-weight: 900;
+}
+table{
+  width: 100%;
+}
+table th,table td{
+  width: 25%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 15px;
+  text-align: center;
+}
+#table3 th,#table3 td{
+  width: 33%;
+}
+#table5 th,#table5 td{
+  width: 20%;
+}
+.textareas{
+  width: 100%;
+  min-height: 340px;
+  border:1px solid #000;
+}
+.textareas div.ch2{
+  height: 40px;
+  line-height: 40px;
+  text-indent: 5px;
+}
+.textareas div.ch1{
+  height: 300px;
+}
+.margintop{
+    margin-top: 50px;
+}
+#table2{
+  margin-top: 50px;
+}
+#table3,#table5{
+  margin-top: -2px;
+}
+.textareas2{
+  height: 300px;
+  width: 100%;
+  border:1px solid #000;
+  position: relative;
+}
+.qztime{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+.qzname{
+  position: absolute;
+  bottom: 50px;
+  right: 200px;
+}
+.qzdscheckbox{
+  position: absolute;
+  bottom: 100px;
+  left: 10px;
+}
+.yijiantop{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.yijiantop2{
+  position: absolute;
+  top: 170px;
+  left: 10px;
+}
+.yijiantop3{
+  position: absolute;
+  top: 120px;
+  left: 10px;
+}

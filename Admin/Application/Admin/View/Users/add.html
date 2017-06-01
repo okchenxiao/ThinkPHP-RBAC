@@ -1,0 +1,182 @@
+<?php 
+	//加载本页面专属css样式
+	echo includeCss(array('select2_metro','chosen'));
+ ?>
+
+<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+<h3 class="page-title">
+
+    添加新用户
+    <small>添加后台用户</small>
+
+</h3>
+
+<ul class="breadcrumb">
+
+    <li>
+
+        <i class="icon-home"></i>
+
+        <a href="#">首页</a>
+
+        <i class="icon-angle-right"></i>
+
+    </li>
+
+    <li><a href="#">用户管理</a><i class="icon-angle-right"></i></li>
+    <li><a href="#">添加用户</a></li>
+
+
+</ul>
+{:alert_msg()}
+<!-- END PAGE HEADER-->
+
+<div class="row-fluid">
+
+    <div class="span12">
+
+        <!-- BEGIN VALIDATION STATES-->
+
+        <div class="portlet box purple">
+
+            <div class="portlet-title">
+
+                <div class="caption"><i class="icon-reorder"></i>添加用户</div>
+
+
+            </div>
+
+            <div class="portlet-body form">
+
+                <!-- BEGIN FORM-->
+
+                <form action="{:U('/Users/add_user')}" method="post" id="add_user" class="form-horizontal" novalidate="novalidate">
+
+                    <div class="control-group">
+
+                        <label class="control-label">姓名<span class="required">*</span></label>
+
+                        <div class="controls">
+
+                            <input type="text" name="real_name" class="span6 m-wrap" placeholder="请输入姓名">
+
+                        </div>
+
+                    </div>
+
+                    <div class="control-group">
+
+                        <label class="control-label">邮箱<span class="required">*</span></label>
+
+                        <div class="controls">
+
+                            <input name="email" type="text" class="span6 m-wrap" placeholder="请输入邮箱">
+                            <p style="color: red;font-size: 15px;margin-top: 10px">温馨提示:登录用户名和密码皆默认为邮箱.</p>
+                        </div>
+
+                    </div>
+
+                    <!--<div class="control-group">-->
+
+                        <!--<label class="control-label">角色<span class="required">*</span></label>-->
+
+                        <!--<div class="controls">-->
+
+                            <!--<select class="span6 m-wrap" name="category">-->
+
+                                <!--<option value="">Select...</option>-->
+
+                                <!--<option value="Category 1">Category 1</option>-->
+
+                                <!--<option value="Category 2">Category 2</option>-->
+
+                                <!--<option value="Category 3">Category 5</option>-->
+
+                                <!--<option value="Category 4">Category 4</option>-->
+
+                            <!--</select>-->
+
+                        <!--</div>-->
+
+                    <!--</div>-->
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="btn purple">确认提交</button>
+
+                    </div>
+
+                </form>
+
+                <!-- END FORM-->
+
+            </div>
+
+        </div>
+
+        <!-- END VALIDATION STATES-->
+
+    </div>
+
+</div>
+
+<?php 
+	//加载本页面专属js文件
+	echo includeJs(array('jquery.validate.min','additional-methods.min','select2.min','chosen.jquery.min'));
+	//app.js为公用js文件
+	echo includeJs(array('form-validation','app'));
+ ?>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<script>
+    //本页面初始化
+    jQuery(document).ready(function () {
+
+        App.init();
+
+        FormValidation.init();
+
+        //表单验证
+        var form1 = $('#add_user');
+
+        form1.validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-inline', // default input error message class
+            focusInvalid: false, // do not focus the last invalid input
+            ignore: "",
+            rules: {
+                real_name: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+
+            invalidHandler: function (event, validator) { //display error alert on form submit
+
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                        .closest('.help-inline').removeClass('ok'); // display OK icon
+                $(element)
+                        .closest('.control-group').removeClass('success').addClass('error'); // set error class to the control group
+            },
+
+            unhighlight: function (element) { // revert the change dony by hightlight
+                $(element)
+                        .closest('.control-group').removeClass('error'); // set error class to the control group
+            },
+
+            success: function (label) {
+                label
+                        .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
+                        .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
+            }
+        });
+    });
+
+</script>
