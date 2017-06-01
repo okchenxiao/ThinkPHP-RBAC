@@ -6,7 +6,7 @@ return array(
     'DB_NAME'               =>  'rbac',          // 数据库名
     'DB_USER'               =>  'root',      // 用户名
     'DB_PWD'                =>  'root',          // 密码
-    'DB_PORT'               =>  '',        // 端口
+    'DB_PORT'               =>  '3306',        // 端口
     'DB_PREFIX'             =>  '',    // 数据库表前缀
     'DB_PARAMS'          	=>  array(
         PDO::ATTR_CASE      =>  PDO::CASE_NATURAL
@@ -22,10 +22,20 @@ return array(
         '__CSS__'           =>  MY_URL.'/Public/css',
         '__JS__'            =>  MY_URL.'/Public/js',
         '__IMG__'           =>  MY_URL.'/Public/img',
+        '__IMAGE__'           =>  MY_URL.'/Public/image',
     ),
     //分页工具的
     'PAGE'                  =>  array(
         'SIZE'              =>  10,//每页显示条数
         'THEME'             =>  '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%',
     ),
+
+    /* 默认设定 */
+    'DEFAULT_MODULE'        =>  'Admin',  // 默认模块
+    'DEFAULT_CONTROLLER'    =>  'Users', // 默认控制器名称
+    'DEFAULT_ACTION'        =>  'login', // 默认操作名称
+
+    'TMPL_LAYOUT_ITEM'      =>  '{__CONTENT__}', // 布局模板的内容替换标识
+    'LAYOUT_ON'             =>  true, // 是否启用布局
+    'LAYOUT_NAME'           =>  'Layout/layout', // 当前布局名称 默认为layout
 );
