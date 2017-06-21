@@ -8,7 +8,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-/**   »ù´¡¹«ÓÃÀà
+/**   åŸºç¡€æ§åˆ¶å™¨
  * Class BaseController
  * @package Admin\Controller
  */

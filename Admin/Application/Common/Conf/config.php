@@ -26,7 +26,7 @@ return array(
     ),
     //分页工具的
     'PAGE'                  =>  array(
-        'SIZE'              =>  10,//每页显示条数
+        'SIZE'              =>  15,//每页显示条数
         'THEME'             =>  '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%',
     ),
 

@@ -1,0 +1,168 @@
+<?php
+	//加载本页面专属css样式
+	echo includeCss(array('jquery.ztree/zTreeStyle'));
+ ?>
+<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+<h3 class="page-title">
+
+    医院职工管理
+
+</h3>
+<ul class="breadcrumb" style="margin-top:50px;margin-bottom: 0px">
+
+    <li>
+
+        <i class="icon-home"></i>
+
+        <a href="#">主页</a>
+
+        <i class="icon-angle-right"></i>
+
+    </li>
+
+    <li>
+
+        <a href="#">单位人员管理</a>
+
+        <i class="icon-angle-right"></i>
+
+    </li>
+
+    <li><a href="#">医院职工管理</a></li>
+
+</ul>
+
+<div class="clearfix" style='border: 1px solid gainsboro;margin-bottom:20px;padding-top: 20px'>
+
+    <label class='tec_source_control-label'>　姓名搜索　</label>
+    <input type="text" class="span2 m-wrap"/>
+
+    <label class='tec_source_control-label'>　选择科室　</label>
+    <select class="span2 m-wrap">
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+    </select>
+
+    <a style="margin-right: 10px;" class="btn blue btn-large pull-right" href="{:U('/Users/add_user',true)}"><i
+            class="icon-plus"></i> 添加</a>
+
+    <a style="margin-right: 10px;" class="btn blue btn-large pull-right" href="#">
+        批量导入</a>
+    <button style="margin-right: 10px;" type="submit" class="btn blue pull-right"><i class="icon-search"></i> 搜索
+    </button>
+
+</div>
+<!-- END PAGE TITLE & BREADCRUMB-->
+<!--<div class="alert alert-error">-->
+
+    <!--<button class="close" data-dismiss="alert"></button>-->
+
+    <!--<strong>Error!</strong> 日常任务失败了。-->
+
+<!--</div>-->
+<!-- BEGIN PAGE CONTENT-->
+
+<div class="row-fluid">
+    <!--啊啊啊啊啊-->
+    <div class="portlet box blue">
+        <div class="portlet-body">
+
+            <div class="portlet-title">
+
+                <div class="caption">用户列表</div>
+                <a id="reload">刷新</a>
+            </div>
+            <div style="border: 1px solid #4b8df8">
+                <ul id="treeDemo" class="ztree"></ul>
+            </div>
+        </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+
+</div>
+
+<?php
+    //加载本页面专属js文件
+    echo includeJs(array('app'));
+?>
+<?php
+    //加载本页面专属js文件
+?>
+<?php
+    //加载本页面专属js文件
+    echo includeJs(array('calendar/WdatePicker','jquery.ztree/jquery.ztree.core','jquery.ztree/jquery.ztree.exedit'));
+?>
+
+<!-- END PAGE LEVEL PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+<script>
+    jQuery(document).ready(function () {
+
+        App.init();
+
+    });
+    var zTreeObj;
+    // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+    var setting = {
+        edit: {
+            enable: true,
+            showRenameBtn: true,
+            showRemoveBtn: true,
+            removeTitle: "删除",
+            renameTitle: "编辑",
+            drag: {
+                isCopy: false,
+                isMove: true,
+                prev: false,
+                next: false,
+                inner: true
+            }
+        },
+        callback: {
+            beforeRemove: zTreeBeforeRemove,
+            onDrop: zTreeOnDrop
+        }
+    };
+    // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+    var zNodes = {$lists};
+    $(document).ready(function () {
+        zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+    });
+
+    function zTreeBeforeRemove(treeId, treeNode) {
+        if(treeNode.id == 0)
+        {
+            return false;
+        }
+
+        if(confirm('温馨提示:删除后不可恢复！确定要删除 '+treeNode.name+' ？'))
+        {
+            $.post('/Authorities/ajax_delete',{id:treeNode.id},function(res){
+                if(res==1){
+                    return true;
+                }
+            },'json')
+        }
+        return false;
+    }
+
+    //移动事件
+    function zTreeOnDrop(event,treeId, treeNode,parentTId) {
+        $.post('/Authorities/ajax_move',{id:treeNode[0].id,pid:parentTId.id},function(res){
+            if(res==1){
+                alert('数据同步成功!')
+            }else{
+                alert('数据同步失败,请刷新后重试!')
+            }
+        },'json')
+    };
+</script>
+
+</body>
+
+<!-- END BODY -->
+
+</html>

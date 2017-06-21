@@ -50,6 +50,14 @@ class UsersController extends BaseController
         return $this->redirect('/Users/login');
     }
 
+    public function index()
+    {
+        $all=$this->_model->all_user();
+        $this->assign('all',$all);
+        $this->display();
+    }
+
+    //添加用户
     public function add_user()
     {
         if(IS_POST){
@@ -66,4 +74,6 @@ class UsersController extends BaseController
         }
         $this->display('add');
     }
+
+
 }

@@ -1,0 +1,155 @@
+<?php
+	//加载本页面专属css样式
+	echo includeCss('page');
+ ?>
+<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+<h3 class="page-title">
+
+    医院职工管理
+
+</h3>
+<ul class="breadcrumb" style="margin-top:50px;margin-bottom: 0px">
+
+    <li>
+
+        <i class="icon-home"></i>
+
+        <a href="#">主页</a>
+
+        <i class="icon-angle-right"></i>
+
+    </li>
+
+    <li>
+
+        <a href="#">单位人员管理</a>
+
+        <i class="icon-angle-right"></i>
+
+    </li>
+
+    <li><a href="#">医院职工管理</a></li>
+
+</ul>
+<div class="clearfix" style='border: 1px solid gainsboro;margin-bottom:20px;padding-top: 20px'>
+
+    <label class='tec_source_control-label'>　姓名搜索　</label>
+    <input type="text" class="span2 m-wrap"/>
+
+    <label class='tec_source_control-label'>　选择科室　</label>
+    <select class="span2 m-wrap">
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+    </select>
+
+    <a style="margin-right: 10px;" class="btn blue btn-large pull-right" href="{:U('/Users/add_user',true)}"><i class="icon-plus"></i> 添加</a>
+
+    <a style="margin-right: 10px;" class="btn blue btn-large pull-right" href="#">
+        批量导入</a>
+    <button style="margin-right: 10px;" type="submit" class="btn blue pull-right"><i class="icon-search"></i> 搜索
+    </button>
+
+</div>
+<!-- END PAGE TITLE & BREADCRUMB-->
+
+<!-- BEGIN PAGE CONTENT-->
+
+<div class="row-fluid">
+    <!--啊啊啊啊啊-->
+    <div class="portlet box blue">
+        <div class="portlet-body">
+
+            <div class="portlet-title">
+
+                <div class="caption">用户列表</div>
+                <a id="reload">刷新</a>
+            </div>
+            <table class="table table-bordered table-hover" id="tablesort">
+
+                <thead>
+
+                <tr>
+
+                    <th>用户名</th>
+
+                    <th>姓名</th>
+
+                    <th>邮箱</th>
+
+                    <th>创建时间</th>
+
+                    <th>最后登录时间</th>
+
+                    <th>最后登录ip</th>
+
+                    <th>操作</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <?php if(!empty($all['all'])): ?>
+                <?php foreach ($all['all'] as $user) :?>
+
+                <tr>
+                    <td><?php echo $user['username'];?></td>
+                    <td><?php echo $user['realname'];?></td>
+                    <td><?php echo $user['email'];?></td>
+                    <td><?php echo substr($user['created'],0,10);?></td>
+                    <td><?php echo substr($user['modified'],0,10);?></td>
+                    <td><?php echo $user['last_ip'];?></td>
+
+                    <td>
+                        <a class="btn red mini">删除</a>
+                    </td>
+                </tr>
+                <?php endforeach;?>
+                <?php else:?>
+                <tr>
+                    <td colspan="12" style="text-align:center;color:red">暂没有数据</td>
+                </tr>
+                <?php endif;?>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+    <!--开始分页栏-->
+    <div id="turn-page" class="page" style="text-align: center;">
+        <?php echo $all['page'];?>
+    </div>
+</div>
+
+<?php
+    //加载本页面专属js文件
+    echo includeJs(array('app'));
+?>
+<?php
+    //加载本页面专属js文件
+?>
+<?php
+    //加载本页面专属js文件
+    echo includeJs(array('calendar/WdatePicker'));
+?>
+
+<!-- END PAGE LEVEL PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+<script>
+    jQuery(document).ready(function () {
+
+        App.init();
+
+    });
+</script>
+
+</body>
+
+<!-- END BODY -->
+
+</html>

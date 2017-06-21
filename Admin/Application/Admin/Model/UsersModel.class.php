@@ -7,8 +7,8 @@
 
 namespace Admin\Model;
 use Think\Model;
-
-class UsersModel extends Model
+use Think\Page;
+class UsersModel extends BaseModel
 {
     //批量验证
     protected $patchValidate = true;
@@ -74,9 +74,22 @@ class UsersModel extends Model
         session('permission_ids',$permission_ids);
     }
 
+    //密码加盐加密 添加用户
     public function add_user()
     {
         $this->data['password']=md5Salt($this->data['password'],$this->data['salt']);
-        dump($this->data);exit;
+        $res=$this->add();
+        return $res;
+    }
+
+    //所有用户
+    public function all_user()
+    {
+        $count=$this->count();
+        $page=new Page($count,C('PAGE.SIZE'));
+        $page->setConfig('theme',C('PAGE.THEME'));
+        $page_html=$page->show();//数据分页
+        $all=$this->order('modified desc')->limit($page->firstRow,$page->listRows)->select();
+        return array('all'=>$all,'page'=>$page_html);
     }
 }
